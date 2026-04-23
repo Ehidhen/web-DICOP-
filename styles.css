@@ -12,8 +12,44 @@
   --shadow: 0 34px 110px rgba(0, 0, 0, 0.32);
   --radius-lg: 32px;
   --radius-md: 22px;
-  --heading: "Libre Baskerville", Georgia, serif;
-  --body: "Instrument Sans", "Segoe UI", sans-serif;
+  --heading: "Bebas Neue", cursive;
+  --body: "Montserrat", sans-serif;
+  --accent: "Instrument Sans", sans-serif;
+}
+
+/* Utils */
+.img-zoom-container {
+  overflow: hidden;
+  position: relative;
+  border-radius: var(--radius-md);
+}
+
+.img-zoom-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.img-zoom-container:hover img {
+  transform: scale(1.1);
+}
+
+.img-zoom-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(15, 17, 21, 0.9) 0%, transparent 60%);
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.img-zoom-container:hover .img-zoom-overlay {
+  opacity: 1;
 }
 
 * {
@@ -167,9 +203,11 @@ textarea {
 .nav a {
   position: relative;
   padding: 13px 12px;
-  color: rgba(243, 245, 247, 0.72);
-  font-size: 0.86rem;
-  font-weight: 750;
+  color: var(--smoke);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .nav a::after {
@@ -211,7 +249,6 @@ textarea {
   display: none;
 }
 
-.hero,
 .section,
 .decision-panel,
 .trust-strip,
@@ -222,12 +259,28 @@ textarea {
 }
 
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 0.98fr) minmax(380px, 0.9fr);
-  gap: 54px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  text-align: center;
   min-height: 100vh;
-  padding: 176px 0 72px;
+  padding: 120px 20px 40px;
+  background: url('./assets/hero.png') center/cover no-repeat;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 17, 21, 0.4) 0%, rgba(15, 17, 21, 0.8) 100%);
+  z-index: 0;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 .eyebrow {
@@ -250,15 +303,16 @@ h1,
 h2 {
   font-family: var(--heading);
   font-weight: 700;
-  letter-spacing: -0.055em;
+  letter-spacing: 0.05em;
 }
 
 h1 {
-  max-width: 860px;
   margin-bottom: 26px;
   color: var(--smoke);
-  font-size: clamp(3.7rem, 7.4vw, 7.2rem);
-  line-height: 0.95;
+  font-size: clamp(4.5rem, 9vw, 9.5rem);
+  line-height: 0.85;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 h2 {
@@ -272,7 +326,7 @@ h3 {
   margin-bottom: 10px;
   color: var(--smoke);
   font-size: 1.08rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
 }
 
 .hero-text,
@@ -1038,4 +1092,41 @@ h3 {
   .footer {
     display: grid;
   }
+}
+
+/* Floating Socials */
+.floating-socials {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+.social-btn:hover {
+  transform: scale(1.15) translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+  color: #fff; /* Ensure text color stays white on hover from global a styles */
+}
+
+.social-btn.facebook {
+  background-color: #1877F2; /* Facebook Blue */
+}
+
+.social-btn.whatsapp {
+  background-color: #25D366; /* WhatsApp Green */
 }
