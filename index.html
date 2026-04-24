@@ -12,14 +12,13 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700;800&family=Instrument+Sans:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=4" />
   </head>
   <body>
     <div class="site-shell">
       <div class="announcement" aria-live="polite">
         <span class="announcement-line"></span>
         <p id="announcementText">Cortinas y persianas a medida en Cochabamba</p>
-        <a href="#cotizar">WhatsApp directo</a>
       </div>
 
       <header class="site-header">        <a class="brand" href="#inicio" aria-label="DICOP inicio">
@@ -39,9 +38,8 @@
         <nav class="nav" aria-label="Navegacion principal">
           <a href="#productos">Productos</a>
           <a href="#precios">Precios</a>
-          <a href="#selector">Elegir</a>
           <a href="#proyectos">Proyectos</a>
-          <a href="#comprar">Cómo comprar</a>
+          <a href="#comprar">Cortinas</a>
           <a class="nav-cta" href="#cotizar">Cotizar por WhatsApp</a>
         </nav>
       </header>
@@ -60,46 +58,24 @@
             </p>
             
             <div class="hero-actions" style="margin-top: 0; justify-content: center; width: 100%;">
-              <a class="button primary" href="#cotizar" style="background-color: #b8735c; color: #ffffff; font-size: 1.1rem; border: 1px solid #c4826b; box-shadow: 0 8px 24px rgba(184, 115, 92, 0.4);">Cotizar Proyecto</a>
+              <!-- Botón eliminado por solicitud del usuario -->
             </div>
           </div>
         </section>
-        </section>
 
-        <section class="decision-panel reveal" id="selector">
-          <div class="decision-copy">
-            <p class="eyebrow">Elección rápida</p>
-            <h2>Encuentra la opción ideal en menos de un minuto.</h2>
-            <p>
-              Selecciona ambiente, privacidad y control de luz. Te sugerimos productos adecuados para cotizar sin
-              perder tiempo entre opciones que no encajan.
-            </p>
+        <section class="section gallery-section reveal" id="galeria">
+          <div class="section-heading centered">
+            <p class="eyebrow">Nuestros Proyectos</p>
+            <h2>Explora nuestra galería.</h2>
           </div>
-
-          <div class="selector-card">
-            <div class="option-group" data-group="space">
-              <span>Ambiente</span>
-              <button class="chip is-active" data-value="hogar" type="button">Hogar</button>
-              <button class="chip" data-value="oficina" type="button">Oficina</button>
-              <button class="chip" data-value="negocio" type="button">Negocio</button>
-            </div>
-            <div class="option-group" data-group="privacy">
-              <span>Privacidad</span>
-              <button class="chip is-active" data-value="media" type="button">Media</button>
-              <button class="chip" data-value="alta" type="button">Alta</button>
-              <button class="chip" data-value="total" type="button">Total</button>
-            </div>
-            <div class="option-group" data-group="light">
-              <span>Control de luz</span>
-              <button class="chip is-active" data-value="suave" type="button">Luz suave</button>
-              <button class="chip" data-value="regulable" type="button">Regulable</button>
-              <button class="chip" data-value="bloqueo" type="button">Bloqueo</button>
-            </div>
-            <div class="recommendation" id="recommendationBox">
-              <span>Recomendación DICOP</span>
-              <strong>Roller duo o luminette</strong>
-              <p>Ideal si quieres privacidad media, luz regulable y una estética limpia para espacios modernos.</p>
-              <a href="#cotizar">Cotizar esta opción</a>
+          <div class="carousel-viewport">
+            <div class="carousel-track" id="galleryTrack">
+              <img src="./assets/horizontal (1).jpeg" alt="Proyecto DICOP" class="gallery-img">
+              <img src="./assets/vertical (1).jpeg" alt="Proyecto DICOP" class="gallery-img">
+              <img src="./assets/horizontal (2).jpeg" alt="Proyecto DICOP" class="gallery-img">
+              <img src="./assets/vertical (2).jpeg" alt="Proyecto DICOP" class="gallery-img">
+              <img src="./assets/horizontal (3).jpeg" alt="Proyecto DICOP" class="gallery-img">
+              <img src="./assets/vertical (3).jpeg" alt="Proyecto DICOP" class="gallery-img">
             </div>
           </div>
         </section>
@@ -134,9 +110,9 @@
               <a href="#cotizar">Cotizar</a>
             </div>
             <div class="price-row" role="row">
-              <span>Blackout</span>
-              <span>Dormitorios, salas de reunión, descanso</span>
-              <span>Alta/Total</span>
+              <span>Persiana Veneciana</span>
+              <span>Dormitorios, salas de reunión, decoración</span>
+              <span>Media</span>
               <strong>Desde Bs 220/m²</strong>
               <a href="#cotizar">Cotizar</a>
             </div>
@@ -173,10 +149,10 @@
             </article>
             <article class="product-card reveal">
               <span>03</span>
-              <h3>Blackout</h3>
+              <h3>Persiana Veneciana</h3>
               <p>Bloqueo de luz para descanso, privacidad y espacios donde se necesita oscuridad controlada.</p>
-              <small>Luz: bloqueo · Privacidad: alta/total</small>
-              <a href="#cotizar">Cotizar blackout</a>
+              <small>Luz: controlada/ regulada · Privacidad: media</small>
+              <a href="#cotizar">Cotizar veneciana</a>
             </article>
             <article class="product-card reveal">
               <span>04</span>
@@ -250,8 +226,9 @@
 
         <section class="section buy-process" id="comprar">
           <div class="section-heading centered reveal">
-            <p class="eyebrow">Cómo comprar</p>
-            <h2>Un proceso rápido para cotizar sin complicarte.</h2>
+            <p class="eyebrow">Cortinas</p>
+            <h2>Un proceso rápido para cotizar tus cortinas sin complicarte.</h2>
+            <button id="openModalMedidas" class="button secondary" style="margin-top: 16px; border-radius: 999px; padding: 0 24px; font-weight: 700;">Cómo tomar las medidas</button>
           </div>
           <div class="process-track">
             <article class="reveal">
@@ -261,7 +238,7 @@
             </article>
             <article class="reveal">
               <span>02</span>
-              <h3>Envías foto o medida</h3>
+              <h3>Enviar medidas</h3>
               <p>Compartes ancho, alto aproximado y una foto del ambiente por WhatsApp.</p>
             </article>
             <article class="reveal">
@@ -302,7 +279,7 @@
                 <option>Necesito recomendación</option>
                 <option>Roller simple</option>
                 <option>Roller duo</option>
-                <option>Blackout</option>
+                <option>Persiana Veneciana</option>
                 <option>Panel japonés</option>
                 <option>Luminette</option>
                 <option>Persiana vertical</option>
@@ -322,6 +299,22 @@
         <span>Diseño y Construcciones · Cortinas y persianas a medida en Cochabamba.</span>
       </footer>
 
+      <!-- Modal para galería -->
+      <div id="modalGallery" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Vista de imagen">
+        <button id="closeModalGallery" class="modal-close" aria-label="Cerrar modal">&times;</button>
+        <div class="modal-content">
+          <img id="modalGalleryImage" src="" alt="Vista ampliada">
+        </div>
+      </div>
+
+      <!-- Modal para tomar medidas -->
+      <div id="modalMedidas" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Cómo tomar medidas">
+        <button id="closeModalMedidas" class="modal-close" aria-label="Cerrar modal">&times;</button>
+        <div class="modal-content">
+          <img src="./assets/tomar medidas.jpg" alt="Instrucciones para tomar medidas de cortinas">
+        </div>
+      </div>
+
       <!-- Floating Social Widgets -->
       <div class="floating-socials">
         <a href="https://www.facebook.com/Dicopcbba" target="_blank" rel="noopener noreferrer" class="social-btn facebook" aria-label="Facebook DICOP">
@@ -333,6 +326,6 @@
       </div>
     </div>
 
-    <script src="./script.js"></script>
+    <script src="./script.js?v=4"></script>
   </body>
 </html>

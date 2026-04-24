@@ -54,8 +54,8 @@ const state = {
 const recommendations = [
   {
     match: ({ privacy, light }) => privacy === "total" || light === "bloqueo",
-    title: "Blackout a medida",
-    text: "Recomendado si necesitas descanso, privacidad alta o bloqueo de luz en dormitorios, salas de reunión o consultorios.",
+    title: "Persiana Veneciana a medida",
+    text: "Recomendado si necesitas control de luz y privacidad media en dormitorios, oficinas o salas de estar.",
   },
   {
     match: ({ light }) => light === "regulable",
@@ -116,4 +116,112 @@ const observer = new IntersectionObserver(
 document.querySelectorAll(".reveal").forEach((element, index) => {
   element.style.transitionDelay = `${Math.min(index * 34, 240)}ms`;
   observer.observe(element);
+});
+
+// Modal Medidas Logic
+const modalTrigger = document.querySelector("#openModalMedidas");
+const modalOverlay = document.querySelector("#modalMedidas");
+const modalClose = document.querySelector("#closeModalMedidas");
+
+const openModal = () => {
+  modalOverlay?.classList.add("is-active");
+  document.body.style.overflow = "hidden";
+};
+
+const closeModal = () => {
+  modalOverlay?.classList.remove("is-active");
+  document.body.style.overflow = "";
+};
+
+modalTrigger?.addEventListener("click", (e) => {
+  e.preventDefault();
+  openModal();
+});
+
+modalClose?.addEventListener("click", closeModal);
+modalOverlay?.addEventListener("click", (e) => {
+  if (e.target === modalOverlay) closeModal();
+});
+
+// Update keyboard listener
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeMenu();
+    closeModal();
+    if (typeof closeGalleryModal === 'function') closeGalleryModal();
+  }
+});
+
+// Image Gallery Carousel Logic
+const galleryTrack = document.getElementById("galleryTrack");
+const galleryImages = document.querySelectorAll(".gallery-img");
+
+if (galleryTrack && galleryImages.length > 0) {
+  let currentIndex = 0;
+  // Duplicate nodes for infinite loop effect
+  const cloneImages = () => {
+    galleryImages.forEach(img => {
+      const clone = img.cloneNode(true);
+      galleryTrack.appendChild(clone);
+    });
+  };
+  cloneImages();
+  
+  const allImages = document.querySelectorAll(".carousel-track .gallery-img");
+  const totalItems = galleryImages.length; // Original length
+
+  const moveToNextPair = () => {
+    currentIndex += 2;
+    galleryTrack.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
+    
+    // On mobile, show 1 by 1. On desktop, show 2 by 2.
+    const isMobile = window.innerWidth <= 768;
+    const movePercentage = isMobile ? currentIndex * 100 : currentIndex * 50;
+    
+    galleryTrack.style.transform = `translateX(-${movePercentage}%)`;
+
+    // Reset jump when we reached the end of the original set
+    if (currentIndex >= totalItems) {
+      setTimeout(() => {
+        galleryTrack.style.transition = 'none';
+        currentIndex = 0;
+        galleryTrack.style.transform = `translateX(0)`;
+      }, 850); // wait for transition to finish
+    }
+  };
+
+  // Run every 3 seconds
+  setInterval(moveToNextPair, 3000);
+}
+
+// Gallery Lightbox Modal Logic
+const modalGallery = document.querySelector("#modalGallery");
+const modalGalleryImage = document.querySelector("#modalGalleryImage");
+const closeGalleryBtn = document.querySelector("#closeModalGallery");
+
+const openGalleryModal = (src) => {
+  if (modalGallery && modalGalleryImage) {
+    modalGalleryImage.src = src;
+    modalGallery.classList.add("is-active");
+    document.body.style.overflow = "hidden";
+  }
+};
+
+const closeGalleryModal = () => {
+  if (modalGallery) {
+    modalGallery.classList.remove("is-active");
+    document.body.style.overflow = "";
+  }
+};
+
+// Add click listeners to original and cloned images
+document.querySelector(".carousel-track")?.addEventListener('click', (e) => {
+  if (e.target.classList.contains('gallery-img')) {
+    openGalleryModal(e.target.src);
+  }
+});
+
+closeGalleryBtn?.addEventListener("click", closeGalleryModal);
+modalGallery?.addEventListener("click", (e) => {
+  if (e.target === modalGallery) closeGalleryModal();
 });
