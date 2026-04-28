@@ -675,13 +675,16 @@ h3 {
   font-weight: 750;
 }
 
-.product-card a {
+.product-card a,
+.view-product-btn {
   width: max-content;
   min-height: 42px;
   margin-top: 22px;
   padding: 0 15px;
   border: 1px solid var(--line-strong);
   background: rgba(243, 245, 247, 0.06);
+  cursor: pointer;
+  color: var(--smoke);
 }
 
 .trust-strip {

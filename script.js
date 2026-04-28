@@ -27,7 +27,7 @@ document.addEventListener("keydown", (event) => {
 const messages = [
   "Cortinas y persianas a medida en Cochabamba",
   "Medición, fabricación e instalación profesional",
-  "Roller, blackout, panel japonés, luminette y más",
+  "Roller, blackout, panel japonés, lumineta y más",
   "Atención por WhatsApp y visita técnica",
 ];
 
@@ -54,27 +54,27 @@ const state = {
 const recommendations = [
   {
     match: ({ privacy, light }) => privacy === "total" || light === "bloqueo",
-    title: "Persiana Veneciana a medida",
+    title: "PERSIANA VENECIANA a medida",
     text: "Recomendado si necesitas control de luz y privacidad media en dormitorios, oficinas o salas de estar.",
   },
   {
     match: ({ light }) => light === "regulable",
-    title: "Roller duo o luminette",
+    title: "ROLLER DUO o LUMINETA",
     text: "Ideal para controlar entrada de luz durante el día con una estética moderna y premium.",
   },
   {
     match: ({ space }) => space === "negocio",
-    title: "Persiana vertical o roller simple",
+    title: "PERSIANA VERTICAL o ROLLER SIMPLE",
     text: "Solución práctica para atención comercial, consultorios y espacios que necesitan mantenimiento simple.",
   },
   {
     match: ({ space, privacy }) => space === "oficina" && privacy !== "total",
-    title: "Roller simple screen",
+    title: "ROLLER SIMPLE screen",
     text: "Buena opción para oficinas donde importa reducir brillo, mantener orden visual y controlar privacidad.",
   },
   {
     match: () => true,
-    title: "Panel japonés o roller duo",
+    title: "PANEL JAPONÉS o ROLLER DUO",
     text: "Buena opción para salas, ventanales y ambientes modernos con luz suave y acabado elegante.",
   },
 ];
@@ -198,6 +198,9 @@ if (galleryTrack && galleryImages.length > 0) {
 const modalGallery = document.querySelector("#modalGallery");
 const modalGalleryImage = document.querySelector("#modalGalleryImage");
 const closeGalleryBtn = document.querySelector("#closeModalGallery");
+const quoteForm = document.querySelector(".quote-card");
+
+const buildWhatsAppUrl = (message) => `https://wa.me/?text=${encodeURIComponent(message)}`;
 
 const openGalleryModal = (src) => {
   if (modalGallery && modalGalleryImage) {
@@ -224,4 +227,33 @@ document.querySelector(".carousel-track")?.addEventListener('click', (e) => {
 closeGalleryBtn?.addEventListener("click", closeGalleryModal);
 modalGallery?.addEventListener("click", (e) => {
   if (e.target === modalGallery) closeGalleryModal();
+});
+
+quoteForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+});
+
+quoteForm?.querySelector("button")?.addEventListener("click", () => {
+  const name = quoteForm.querySelector("input")?.value.trim();
+  const product = quoteForm.querySelector("select")?.value;
+  const details = quoteForm.querySelector("textarea")?.value.trim();
+
+  const message = [
+    "Hola DICOP, quiero una cotizacion.",
+    name ? `Nombre: ${name}` : "",
+    product ? `Producto de interes: ${product}` : "",
+    details ? `Medida o ambiente: ${details}` : "",
+  ].filter(Boolean).join("\n");
+
+  window.open(buildWhatsAppUrl(message), "_blank", "noopener,noreferrer");
+});
+
+// View Product Buttons Logic
+document.querySelectorAll(".view-product-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const imgSrc = btn.dataset.image;
+    if (imgSrc) {
+      openGalleryModal(imgSrc);
+    }
+  });
 });
